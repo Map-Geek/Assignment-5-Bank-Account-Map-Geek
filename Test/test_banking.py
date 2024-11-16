@@ -45,3 +45,31 @@ def test_transaction_with_default_timestamp():
 
     assert transaction.amount == 200.75
     assert isinstance(transaction.timestamp, dt)
+
+
+def test_transaction_timestamp():
+    """
+    Test to verify that when a Transaction instance is created with a date only,
+    the timestamp is set correctly with the time defaulting to midnight (00:00:00).
+    """
+    transaction = Transaction(amount=10, timestamp=dt(2002, 1, 10))
+    expected_timestamp = dt(2002, 1, 10, 0, 0, 0)
+    assert transaction.timestamp == expected_timestamp
+
+
+def test_transaction_repr():
+    """
+    Test the __repr__ method to ensure it gives the expected string output
+    """
+    transaction = Transaction(amount=150.51, timestamp=dt(2024, 11, 14, 12, 30))
+    expected_repr = "Transaction(amount=150.51, timestamp=datetime.datetime(2024, 11, 14, 12, 30))"
+    assert repr(transaction) == expected_repr
+
+
+def test_transaction_str():
+    """
+    Test the __str__ method to ensure it formats the amount and timestamp correctly
+    """
+    transaction = Transaction(amount=-370.00, timestamp=dt(2024, 11, 14, 12, 30))
+    expected_str = "2024-11-14: -$370.00"
+    assert str(transaction) == expected_str
