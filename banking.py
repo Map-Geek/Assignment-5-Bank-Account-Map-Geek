@@ -59,3 +59,28 @@ class Transaction:
 
         # Bind the timestamp to the instance
         self.timestamp = timestamp
+
+    def __repr__(self):
+        """
+        Returns a detailed string representation of the Transaction object,
+        useful for debugging, recreating the object in the interpreter.
+
+        :return: str: A string representation of the Transaction object.
+        """
+        return f"Transaction(amount={str(self.amount)}, timestamp={repr(self.timestamp)})"
+
+    def __str__(self):
+        """
+        Returns a formatted string representation of the Transaction object,
+        with the amount as currency and timestamp.
+
+        :return: str: A formatted string in the form of 'YYYY-MM-DD: +$amount'
+                      or 'YYYY-MM-DD: -$amount'.
+        """
+
+        formatted_amount = f"{abs(self.amount):,.2f}"
+        if self.amount >= 0:
+            formatted_amount = f"+${formatted_amount}"
+        else:
+            formatted_amount = f"-${formatted_amount}"
+        return f"{self.timestamp.strftime('%Y-%m-%d')}: {formatted_amount}"
