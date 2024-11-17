@@ -109,3 +109,12 @@ class Account:
     def __init__(self):
         # Initialize with an empty list of transactions
         self.transactions = []
+
+    def deposit(self, amount):
+        """
+        Creates a deposit transaction and adds it to the transaction list.
+        :param amount: The amount to deposit.
+        """
+        amount = abs(amount)  # Convert to positive amount
+        transaction = Transaction(amount)
+        self.transactions.append(transaction)

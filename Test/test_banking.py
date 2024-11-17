@@ -83,3 +83,26 @@ def test_account_initialization():
 
     assert isinstance(account.transactions, list)
     assert len(account.transactions) == 0
+
+
+def test_deposit():
+    """
+    Test deposit method creates a transaction with the correct positive amount.
+    """
+    account = Account()
+    account.deposit(-75)
+
+    assert len(account.transactions) == 1
+    assert account.transactions[0].amount == 75  # Ensures amount is positive
+
+
+def test_deposit_appends_to_transactions():
+    """
+    Test that the deposit method appends multiple transactions correctly.
+    """
+    account = Account()
+    account.deposit(105.50)
+    account.deposit(267.456)
+    assert len(account.transactions) == 2
+    assert account.transactions[0].amount == 105.50
+    assert account.transactions[1].amount == 267.456
