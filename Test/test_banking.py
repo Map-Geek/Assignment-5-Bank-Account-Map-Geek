@@ -130,3 +130,45 @@ def test_withdraw_appends_to_transactions():
     assert len(account.transactions) == 2
     assert account.transactions[0].amount == -700.5
     assert account.transactions[1].amount == -200
+
+
+def test_get_balance_with_no_transactions():
+    """
+    Test that get_balance returns 0 when no transactions are recorded.
+    """
+    account = Account()
+    assert account.get_balance() == 0  # No transactions, balance is 0
+
+
+def test_get_balance_with_transactions():
+    """
+    Test that get_balance calculates the correct balance with a mix of deposits and withdrawals.
+    """
+    account = Account()
+    account.deposit(100)
+    account.withdraw(90)
+    account.deposit(10)
+
+    assert account.get_balance() == 20  # 100 - 90 + 10 = 20
+
+
+def test_get_balance_with_only_deposits():
+    """
+    Test that get_balance calculates the correct balance when only deposits are present.
+    """
+    account = Account()
+    account.deposit(55.55)
+    account.deposit(150)
+
+    assert account.get_balance() == 205.55  # 55.55 + 150 = 205.55
+
+
+def test_get_balance_with_only_withdrawals():
+    """
+    Test that get_balance calculates the correct balance when only withdrawals are present.
+    """
+    account = Account()
+    account.withdraw(30.22)
+    account.withdraw(22.34)
+
+    assert account.get_balance() == -52.56  # -30.22 - 22.34 = -52.56

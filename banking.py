@@ -127,3 +127,10 @@ class Account:
         amount = -abs(amount)  # Convert to negative amount
         transaction = Transaction(amount)
         self.transactions.append(transaction)
+
+    def get_balance(self):
+        """
+        Calculates and returns the balance by summing up all transaction amounts.
+        :return: The sum of all transaction amounts. Returns 0 if no transactions exist.
+        """
+        return sum(transaction.amount for transaction in self.transactions)
