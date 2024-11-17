@@ -106,3 +106,27 @@ def test_deposit_appends_to_transactions():
     assert len(account.transactions) == 2
     assert account.transactions[0].amount == 105.50
     assert account.transactions[1].amount == 267.456
+
+
+def test_withdraw():
+    """
+    Test that the withdraw method creates a transaction with the correct negative amount.
+    """
+    account = Account()
+    account.withdraw(80)
+
+    assert len(account.transactions) == 1
+    assert account.transactions[0].amount == -80  # Ensures amount is negative
+
+
+def test_withdraw_appends_to_transactions():
+    """
+    Test that the withdraw method appends multiple transactions correctly.
+    """
+    account = Account()
+    account.withdraw(700.5)
+    account.withdraw(200)
+
+    assert len(account.transactions) == 2
+    assert account.transactions[0].amount == -700.5
+    assert account.transactions[1].amount == -200

@@ -118,3 +118,12 @@ class Account:
         amount = abs(amount)  # Convert to positive amount
         transaction = Transaction(amount)
         self.transactions.append(transaction)
+
+    def withdraw(self, amount):
+        """
+        Creates a withdrawal transaction and adds it to the transaction list.
+        :param amount: The amount to withdraw.
+        """
+        amount = -abs(amount)  # Convert to negative amount
+        transaction = Transaction(amount)
+        self.transactions.append(transaction)
