@@ -12,7 +12,7 @@ and Account classes, including their initialization, behavior, and string repres
 
 from datetime import datetime as dt
 import pytest
-from banking import Transaction
+from banking import Transaction, Account
 
 
 def test_transaction_invalid_amount():
@@ -73,3 +73,13 @@ def test_transaction_str():
     transaction = Transaction(amount=-370.00, timestamp=dt(2024, 11, 14, 12, 30))
     expected_str = "2024-11-14: -$370.00"
     assert str(transaction) == expected_str
+
+
+def test_account_initialization():
+    """
+    Test that the transactions attribute is initialized as an empty list
+    """
+    account = Account()
+
+    assert isinstance(account.transactions, list)
+    assert len(account.transactions) == 0
