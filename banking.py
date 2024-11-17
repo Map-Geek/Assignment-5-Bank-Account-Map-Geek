@@ -83,4 +83,29 @@ class Transaction:
             formatted_amount = f"+${formatted_amount}"
         else:
             formatted_amount = f"-${formatted_amount}"
-        return f"{self.timestamp.strftime('%Y-%m-%d')}: {formatted_amount}"
+        return f"{self.timestamp.date()}: {formatted_amount}"
+
+
+class Account:
+    """
+    Represents a bank account that tracks transactions and calculates balance.
+
+    Attributes:
+        transactions (list): A list of Transaction objects representing
+                             deposits and withdrawals.
+
+    Methods:
+        deposit(amount):
+            Records a deposit transaction with a positive amount.
+
+        withdraw(amount):
+            Records a withdrawal transaction with a negative amount.
+
+        get_balance():
+            Calculates and returns the current balance by summing all
+            transaction amounts.
+    """
+
+    def __init__(self):
+        # Initialize with an empty list of transactions
+        self.transactions = []
